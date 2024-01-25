@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style type="text/css">
+        /* static/style.css */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input, select, button {
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Heart Disease Prediction</h1>
+        <form method="POST" action="{{ url_for('predict') }}">
+            <label for="age">Age:</label>
+            <input type="number" name="age" required>
+
+            <label for="sex">Sex:</label>
+            <select name="sex" required>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+
+            <label for="chest_pain_type">Chest Pain Type:</label>
+            <select name="chest_pain_type" required>
+                <option value="0">Cardiac Chest Pain (Angina)</option>
+                <option value="1">Musculoskeletal Chest Pain</option>
+                <option value="2">Respiratory Chest Pain</option>
+                <option value="3">Gastrointestinal Chest Pain</option>
+            </select>
+
+            <label for="resting_bp_s">Resting Blood Pressure (mm Hg):</label>
+            <input type="number" name="resting_bp_s" required>
+
+            <label for="cholesterol">Cholesterol (mg/dl):</label>
+            <input type="number" name="cholesterol" required>
+
+            <label for="fasting_blood_sugar">Fasting Blood Sugar (> 120 mg/dl):</label>
+            <select name="fasting_blood_sugar" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+
+            <label for="resting_ecg">Resting ECG:</label>
+            <select name="resting_ecg" required>
+                <option value="0">Normal</option>
+                <option value="1">ST-T wave abnormality</option>
+                <option value="2">Left ventricular hypertrophy</option>
+            </select>
+
+            <label for="max_heart_rate">Max Heart Rate:</label>
+            <input type="number" name="max_heart_rate" required>
+
+            <label for="exercise_angina">Exercise Induced Angina:</label>
+            <select name="exercise_angina" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+
+            <label for="oldpeak">Oldpeak(Depression induced by exercise relative to rest):</label>
+            <input type="number" name="oldpeak" step="0.1" required>
+
+            <label for="ST_slope">ST Slope:</label>
+            <input type="number" name="ST_slope" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="result">
+                {{ prediction_text }}
+        </div>
+    </div>
+</body>
+
+</html>
